@@ -11,9 +11,9 @@
 		EBC57603273BEAD800AC2528 /* hm_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC575F8273BEAD800AC2528 /* hm_ios_sdk.framework */; };
 		EBC57608273BEAD800AC2528 /* hm_ios_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC57607273BEAD800AC2528 /* hm_ios_sdkTests.swift */; };
 		EBC57609273BEAD800AC2528 /* hm_ios_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = EBC575FB273BEAD800AC2528 /* hm_ios_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBC5765C273BEB2800AC2528 /* HMSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC5765B273BEB2800AC2528 /* HMSDK.swift */; };
-		EBC57661273BEB3F00AC2528 /* HMSDKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC57660273BEB3F00AC2528 /* HMSDKWebView.swift */; };
-		EBC57663273BEB5600AC2528 /* HMSDK.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC57662273BEB5600AC2528 /* HMSDK.storyboard */; };
+		EBC5765C273BEB2800AC2528 /* HappinessMeterSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC5765B273BEB2800AC2528 /* HappinessMeterSDK.swift */; };
+		EBC57661273BEB3F00AC2528 /* HMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC57660273BEB3F00AC2528 /* HMWebView.swift */; };
+		EBC57663273BEB5600AC2528 /* HappinessMeter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC57662273BEB5600AC2528 /* HappinessMeter.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +54,9 @@
 		EBC57602273BEAD800AC2528 /* hm.ios.sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hm.ios.sdkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC57607273BEAD800AC2528 /* hm_ios_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hm_ios_sdkTests.swift; sourceTree = "<group>"; };
 		EBC5764E273BEB0400AC2528 /* hm.sdk.sample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hm.sdk.sample.xcodeproj; path = ../../example/hm.sdk.sample/hm.sdk.sample.xcodeproj; sourceTree = "<group>"; };
-		EBC5765B273BEB2800AC2528 /* HMSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSDK.swift; sourceTree = "<group>"; };
-		EBC57660273BEB3F00AC2528 /* HMSDKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSDKWebView.swift; sourceTree = "<group>"; };
-		EBC57662273BEB5600AC2528 /* HMSDK.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HMSDK.storyboard; sourceTree = "<group>"; };
+		EBC5765B273BEB2800AC2528 /* HappinessMeterSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappinessMeterSDK.swift; sourceTree = "<group>"; };
+		EBC57660273BEB3F00AC2528 /* HMWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMWebView.swift; sourceTree = "<group>"; };
+		EBC57662273BEB5600AC2528 /* HappinessMeter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HappinessMeter.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +102,9 @@
 			children = (
 				EBC575FB273BEAD800AC2528 /* hm_ios_sdk.h */,
 				EBC575FC273BEAD800AC2528 /* hm_ios_sdk.docc */,
-				EBC5765B273BEB2800AC2528 /* HMSDK.swift */,
-				EBC57660273BEB3F00AC2528 /* HMSDKWebView.swift */,
-				EBC57662273BEB5600AC2528 /* HMSDK.storyboard */,
+				EBC5765B273BEB2800AC2528 /* HappinessMeterSDK.swift */,
+				EBC57660273BEB3F00AC2528 /* HMWebView.swift */,
+				EBC57662273BEB5600AC2528 /* HappinessMeter.storyboard */,
 			);
 			path = hm.ios.sdk;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBC57663273BEB5600AC2528 /* HMSDK.storyboard in Resources */,
+				EBC57663273BEB5600AC2528 /* HappinessMeter.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC575FD273BEAD800AC2528 /* hm_ios_sdk.docc in Sources */,
-				EBC57661273BEB3F00AC2528 /* HMSDKWebView.swift in Sources */,
-				EBC5765C273BEB2800AC2528 /* HMSDK.swift in Sources */,
+				EBC57661273BEB3F00AC2528 /* HMWebView.swift in Sources */,
+				EBC5765C273BEB2800AC2528 /* HappinessMeterSDK.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

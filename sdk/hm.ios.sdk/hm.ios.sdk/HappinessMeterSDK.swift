@@ -13,7 +13,7 @@ public protocol HMSDKDelegate: AnyObject {
     func hmSDKUserCompletedSurvey()
 }
 
-public class HMSDK {
+public class HappinessMeterSDK {
     let token: String
     let baseURL: String = "https://hm.stg.pmo.gov.ae"
     
