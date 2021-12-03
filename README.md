@@ -2,6 +2,7 @@
 # HappinessMeterSDK
 
 Displays HappinessMeter surveys in Swift.
+<br />
 HappinessMeterSDK is a module written in Swift allowing developer to easily integrate HappinessMeter surveys in their applications.
 <br /><br />
 
