@@ -13,7 +13,7 @@ class ViewController: UIViewController, HMSDKDelegate {
     
     @IBOutlet weak var showSurveyButton: UIButton!
     
-    let hmSDK: HMSDK = HMSDK.init(`YOUR_TOKEN_HERE`)
+    let hmSDK: HMSDK = HMSDK.init("YOUR_TOKEN_HERE")
 
     override func viewDidLoad() {
         super.viewDidLoad()
