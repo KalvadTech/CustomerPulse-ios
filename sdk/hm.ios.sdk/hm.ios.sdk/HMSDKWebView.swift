@@ -40,6 +40,10 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
     
     override func loadView() {
         let contentController = WKUserContentController()
+        contentController.add(
+            self,
+            name: "callbackHandler"
+        )
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.userContentController = contentController
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -53,6 +57,6 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("MESSAGE RECEIVED")
-        print(message)
+        print(message.body)
     }
 }
