@@ -8,7 +8,8 @@
 import UIKit
 import hm_ios_sdk
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, HMSDKDelegate {
+    
     
     @IBOutlet weak var showSurveyButton: UIButton!
     
@@ -17,9 +18,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.lightGray
+        
+        hmSDK.delegate = self
     }
+    
+    // MARK: - IBActions
 
     @IBAction func showSurveyPressed(_ sender: Any) {
-        hmSDK.showSurvey(on: self)
+        self.hmSDK.showSurvey(on: self, dimissAfter: 3.0)
+    }
+    
+    // MARK: - HMSDK Delegates
+    
+    /*
+        This will be call automatically whenever the user has completed the survey.
+    */
+    func hmSDKUserCompletedSurvey() {
+        print("User successfully completed the survey")
     }
 }

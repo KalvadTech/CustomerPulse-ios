@@ -11,6 +11,15 @@ import WebKit
 
 class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
     
+    convenience init(surveyURL: String, dismissTimer: Double, completedCallback: (() -> Void)? = nil) {
+        self.init()
+        self.surveyURL = surveyURL
+        self.dismissTimer = dismissTimer
+        self.completedCallback = completedCallback
+    }
+    
+    // MARK: - UI
+    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -20,7 +29,10 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
     }()
     
     var surveyURL: String?
+    var completedCallback: (() -> Void)? = nil
+    var dismissTimer: Double = 1
     let defaultHeight: CGFloat = 300
+    let jsCompletedMessage: String = "so-widget-completed"
     var webView: WKWebView!
     
     var containerViewHeightConstraint: NSLayoutConstraint?
@@ -44,6 +56,7 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
             self,
             name: "callbackHandler"
         )
+        
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.userContentController = contentController
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -53,10 +66,27 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
         view = webView
     }
     
+    // MARK: - Private Methods
+    
+    func userCompletedSurvey() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + dismissTimer) {
+            self.dismiss(animated: true) {
+                if let callback = self.completedCallback {
+                    callback()
+                }
+            }
+        }
+    }
+    
     // MARK: - WebView Methods
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("MESSAGE RECEIVED")
-        print(message.body)
+        guard let jsMessage = message.body as? String else {
+            return
+        }
+        
+        if (jsMessage == jsCompletedMessage) {
+            self.userCompletedSurvey()
+        }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB255B20275A0BC700F01669 /* hm_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB255B1F275A0BC700F01669 /* hm_ios_sdk.framework */; };
+		EB255B21275A0BC700F01669 /* hm_ios_sdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB255B1F275A0BC700F01669 /* hm_ios_sdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EBC5761F273BEB0200AC2528 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC5761E273BEB0200AC2528 /* AppDelegate.swift */; };
 		EBC57621273BEB0200AC2528 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC57620273BEB0200AC2528 /* SceneDelegate.swift */; };
 		EBC57623273BEB0200AC2528 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC57622273BEB0200AC2528 /* ViewController.swift */; };
@@ -35,7 +37,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EB255B22275A0BC700F01669 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EB255B21275A0BC700F01669 /* hm_ios_sdk.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EB255B1F275A0BC700F01669 /* hm_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = hm_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC5761B273BEB0200AC2528 /* hm.sdk.sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hm.sdk.sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC5761E273BEB0200AC2528 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC57620273BEB0200AC2528 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB255B20275A0BC700F01669 /* hm_ios_sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB255B1E275A0BC700F01669 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB255B1F275A0BC700F01669 /* hm_ios_sdk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EBC57612273BEB0200AC2528 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +109,7 @@
 				EBC57634273BEB0400AC2528 /* hm.sdk.sampleTests */,
 				EBC5763E273BEB0400AC2528 /* hm.sdk.sampleUITests */,
 				EBC5761C273BEB0200AC2528 /* Products */,
+				EB255B1E275A0BC700F01669 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +164,7 @@
 				EBC57617273BEB0200AC2528 /* Sources */,
 				EBC57618273BEB0200AC2528 /* Frameworks */,
 				EBC57619273BEB0200AC2528 /* Resources */,
+				EB255B22275A0BC700F01669 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
