@@ -6,8 +6,8 @@ Displays HappinessMeter surveys in Swift.
 HappinessMeterSDK is a module written in Swift allowing developer to easily integrate HappinessMeter surveys in their applications.
 <br /><br />
 
-Latest version : 1.0.5<br />
-https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.0.5
+Latest version : 1.1.0<br />
+https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.1.0
 
 ## Installation
 
@@ -22,29 +22,35 @@ Then run `pod install` in your terminal.
 
 *If you are not familiar with Cocoapods, this will create a `[project].xcworkspace` that you will have to use from now on.*
 
-### Manually
-
-If you do not want to add HappinessMeterSDK using Cocoapods, you can add `HappinessMeterSDK.framework` to your project.
-<br /><br />
-
-## Usage
-
-First, import the SDK to your project
+To import the SDK to your project
 
 ```
 import HappinessMeterSDK
 ```
 
-Then initialise the SDK using your token.
+### Manually
+
+If you do not want to add HappinessMeterSDK using Cocoapods, you can add `hm_ios_sdk.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
+<br /><br />
+
+To import the SDK to your project
 
 ```
-let hmSDK: HappinessMeterSDK = HappinessMeterSDK.init("YOUR_TOKEN_HERE")
+import hm_ios_sdk
+```
+
+## Usage
+
+First, initialise the SDK using your token or link.
+
+```
+let hmSDK: HappinessMeterSDK = HappinessMeterSDK.init("TOKEN_OR_LINK")
 ```
 
 Finally, simply display the survey for your users.
 
 ```
-self.hmSDK.showSurvey(on: self, dimissAfter: 3.0)
+self.hmSDK.showSurvey(on: self, isDismissible: true, dimissAfter: 1000, withOptions: ["lang": "en"])
 ```
 ### Parameters
 
@@ -62,10 +68,22 @@ self.hmSDK.showSurvey(on: self, dimissAfter: 3.0)
       <td>N/A</td>
   </tr>
   <tr>
+      <td>isDismissible</td>
+      <td>Bool</td>
+      <td>Defines whether the survey is dismissible by the user.</td>
+      <td>true</td>
+  </tr>
+  <tr>
       <td>dimissAfter</td>
-      <td>Double</td>
-      <td>The value in seconds after which the questionnaire will close automatically after having been successfully completed</td>
-      <td>1.0</td>
+      <td>Int</td>
+      <td>The value in milliseconds after which the questionnaire will close automatically after having been successfully completed.</td>
+      <td>1000</td>
+  </tr>
+  <tr>
+      <td>options</td>
+      <td>[String: Any]</td>
+      <td>Dictionary to specify optional parameters to load. (eg. lang='ar/en')</td>
+      <td>[:]</td>
   </tr>
 </table>
 
@@ -89,4 +107,4 @@ func hmSDKUserCompletedSurvey() -> void
 
 ## License
 
-HappinessMeterSDK is released under the MIT license.  [See LICENSE](https://github.com/KalvadTech/hm-ios-sdk/blob/main/sdk/hm.ios.sdk/LICENSE)  for details.
+HappinessMeterSDK is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/hm-ios-sdk/blob/main/sdk/hm.ios.sdk/LICENSE) for details.

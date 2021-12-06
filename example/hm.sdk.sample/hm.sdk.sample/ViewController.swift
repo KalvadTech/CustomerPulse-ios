@@ -12,11 +12,11 @@ class ViewController: UIViewController, HappinessMeterDelegate {
     
     @IBOutlet weak var showSurveyButton: UIButton!
     
-    let hmSDK: HappinessMeterSDK = HappinessMeterSDK.init("YOUR_TOKEN_HERE")
+    let hmSDK: HappinessMeterSDK = HappinessMeterSDK.init("LINK_OR_TOKEN_HERE")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.lightGray
+        self.view.backgroundColor = UIColor.white
         
         hmSDK.delegate = self
     }
@@ -24,7 +24,7 @@ class ViewController: UIViewController, HappinessMeterDelegate {
     // MARK: - IBActions
 
     @IBAction func showSurveyPressed(_ sender: Any) {
-        self.hmSDK.showSurvey(on: self, dimissAfter: 3.0)
+        self.hmSDK.showSurvey(on: self, isDismissible: true, dimissAfter: 1000, withOptions: ["lang": "en"])
     }
     
     // MARK: - HMSDK Delegates

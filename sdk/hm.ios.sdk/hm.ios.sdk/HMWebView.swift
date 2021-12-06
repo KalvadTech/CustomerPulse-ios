@@ -11,9 +11,11 @@ import WebKit
 
 class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
     
-    convenience init(surveyURL: String, dismissTimer: Double, completedCallback: (() -> Void)? = nil) {
+    convenience init(surveyURL: String, isDismissible: Bool, dismissTimer: Int, withOptions options: [String: Any], completedCallback: (() -> Void)? = nil) {
         self.init()
         self.surveyURL = surveyURL
+        self.surveyOptions = options
+        self.isDismissible = isDismissible
         self.dismissTimer = dismissTimer
         self.completedCallback = completedCallback
     }
@@ -29,9 +31,10 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
     }()
     
     var surveyURL: String?
+    var surveyOptions: [String: Any] = [:]
+    var isDismissible: Bool = true
     var completedCallback: (() -> Void)? = nil
-    var dismissTimer: Double = 1
-    let defaultHeight: CGFloat = 300
+    var dismissTimer: Int = 1
     let jsCompletedMessage: String = "so-widget-completed"
     var webView: WKWebView!
     
@@ -45,8 +48,17 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
             return
         }
         
-        let sURL = URL(string: urlString)
-        let surveyRequest = URLRequest(url: sURL!)
+        var sURL = URLComponents(string: urlString)
+        sURL?.queryItems = surveyOptions.map({ option in
+            return URLQueryItem(name: option.key, value: option.value as? String)
+        })
+        
+        guard let test = sURL?.url else {
+            return
+        }
+
+        
+        let surveyRequest = URLRequest(url: test)
         webView.load(surveyRequest)
     }
     
@@ -63,13 +75,14 @@ class HMSDKWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScri
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = false
+        isModalInPresentation = !self.isDismissible
         view = webView
     }
     
     // MARK: - Private Methods
     
     func userCompletedSurvey() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + dismissTimer) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(dismissTimer)) {
             self.dismiss(animated: true) {
                 if let callback = self.completedCallback {
                     callback()

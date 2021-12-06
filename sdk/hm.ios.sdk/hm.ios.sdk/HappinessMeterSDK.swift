@@ -15,7 +15,7 @@ public protocol HappinessMeterDelegate: AnyObject {
 
 public class HappinessMeterSDK {
     let token: String
-    let baseURL: String = "https://hm.stg.pmo.gov.ae"
+    let baseURL: String = "https://survey.customerpulse.gov.ae"
     
     public weak var delegate: HappinessMeterDelegate?
     
@@ -27,9 +27,11 @@ public class HappinessMeterSDK {
     ///
     /// - Parameters:
     ///   - vc: The view controller where the survey will pop up.
-    ///   - dismissTimer: The value in seconds after which the questionnaire will close automatically after having been successfully completed
-    public func showSurvey(on vc: UIViewController, dimissAfter dismissTimer: Double) -> Void {
-        let webView = HMSDKWebView.init(surveyURL: "\(baseURL)/\(token)", dismissTimer: dismissTimer) {
+    ///   - isDimissible: Defines whether the survey is dismissible by the user. Default is set at true.
+    ///   - dismissTimer: The value in milliseconds after which the questionnaire will close automatically after having been successfully completed. Default value is 1000ms.
+    ///   - options: Dictionary to specify optional parameters to load. (eg. lang='ar/en')
+    public func showSurvey(on vc: UIViewController, isDismissible: Bool = true, dimissAfter dismissTimer: Int = 1000, withOptions options:[String: Any] = [:]) -> Void {
+        let webView = HMSDKWebView.init(surveyURL: "\(baseURL)/\(token)", isDismissible: isDismissible, dismissTimer: dismissTimer, withOptions: options) {
             guard let hmSdkDelegate = self.delegate else {
                 return
             }
@@ -37,6 +39,7 @@ public class HappinessMeterSDK {
             hmSdkDelegate.hmSDKUserCompletedSurvey()
         }
         
+        vc.isModalInPresentation = true
         vc.present(webView, animated: true, completion: nil)
     }
 }
