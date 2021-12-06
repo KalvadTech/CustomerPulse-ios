@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   spec.name         = "HappinessMeterSDK"
-  spec.version      = "1.0.4"
+  spec.version      = "1.0.5"
   spec.summary      = "Displays HappinessMeter surveys in Swift"
   spec.description  = "HMSDK is a module written in Swift allowing developer to easily integrate HappinessMeter surveys in their applications."
   spec.homepage     = "https://github.com/KalvadTech/hm-ios-sdk.git"
