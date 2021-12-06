@@ -6,6 +6,9 @@ Displays HappinessMeter surveys in Swift.
 HappinessMeterSDK is a module written in Swift allowing developer to easily integrate HappinessMeter surveys in their applications.
 <br /><br />
 
+Latest version : 1.0.5<br />
+https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.0.5
+
 ## Installation
 
 ### Cocoapods
@@ -26,13 +29,19 @@ If you do not want to add HappinessMeterSDK using Cocoapods, you can add `Happin
 
 ## Usage
 
-First, initialise the SDK using your token.
+First, import the SDK to your project
+
+```
+import HappinessMeterSDK
+```
+
+Then initialise the SDK using your token.
 
 ```
 let hmSDK: HappinessMeterSDK = HappinessMeterSDK.init("YOUR_TOKEN_HERE")
 ```
 
-Then simply display the survey for your users.
+Finally, simply display the survey for your users.
 
 ```
 self.hmSDK.showSurvey(on: self, dimissAfter: 3.0)
