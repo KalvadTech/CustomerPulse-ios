@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.version      = "1.1.0"
   spec.summary      = "Displays HappinessMeter surveys in Swift"
   spec.description  = "HMSDK is a module written in Swift allowing developer to easily integrate HappinessMeter surveys in their applications."
-  spec.homepage     = "https://github.com/KalvadTech/hm-ios-sdk.git"
+  spec.homepage     = "https://github.com/KalvadTech/CustomerPulse-ios.git"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "13.0"
   spec.license      = { :type => "MIT", :file => "sdk/hm.ios.sdk/LICENSE" }
 
-  spec.source       = { :git => "https://github.com/KalvadTech/hm-ios-sdk.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/KalvadTech/CustomerPulse-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "sdk/hm.ios.sdk/hm.ios.sdk/**/*.{h,m,swift}"
 
 end
