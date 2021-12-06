@@ -8,8 +8,7 @@
 import UIKit
 import hm_ios_sdk
 
-class ViewController: UIViewController, HMSDKDelegate {
-    
+class ViewController: UIViewController, HappinessMeterDelegate {
     
     @IBOutlet weak var showSurveyButton: UIButton!
     

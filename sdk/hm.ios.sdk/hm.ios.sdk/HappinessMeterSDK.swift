@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol HMSDKDelegate: AnyObject {
+public protocol HappinessMeterDelegate: AnyObject {
     /// Automatically called whenever the user has successfully completed the survey
     func hmSDKUserCompletedSurvey()
 }
@@ -17,7 +17,7 @@ public class HappinessMeterSDK {
     let token: String
     let baseURL: String = "https://hm.stg.pmo.gov.ae"
     
-    public weak var delegate: HMSDKDelegate?
+    public weak var delegate: HappinessMeterDelegate?
     
     public init(_ token: String) {
         self.token = token
