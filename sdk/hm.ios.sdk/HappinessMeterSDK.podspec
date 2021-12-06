@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   # ――― Deployment Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   spec.swift_version = "5.0"
-  spec.ios.deployment_target = "12.5"
+  spec.ios.deployment_target = "13.0"
   spec.license      = { :type => "MIT", :file => "sdk/hm.ios.sdk/LICENSE" }
 
   spec.source       = { :git => "https://github.com/KalvadTech/hm-ios-sdk.git", :tag => "#{spec.version}" }
