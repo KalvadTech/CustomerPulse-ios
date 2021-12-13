@@ -107,4 +107,4 @@ func csUserCompletedSurvey() -> void
 
 ## License
 
-HappinessMeterSDK is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/CustomerPulse-ios/blob/main/sdk/CustomerPulse/LICENSE) for details.
+CustomerPulse is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/CustomerPulse-ios/blob/main/sdk/CustomerPulse/LICENSE) for details.
