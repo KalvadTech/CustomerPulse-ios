@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
 
   spec.swift_version = "5.0"
   spec.ios.deployment_target = "13.0"
-  spec.license      = { :type => "MIT", :file => "sdk/CustomerPulse/LICENSE" }
+  spec.license      = { :type => "MIT", :file => "sdk/CustomerPulseSDK/LICENSE" }
 
   spec.source       = { :git => "https://github.com/KalvadTech/CustomerPulse-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "sdk/CustomerPulseSDK/CustomerPulse/**/*.{h,m,swift}"
