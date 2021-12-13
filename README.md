@@ -13,7 +13,7 @@ https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.2.0
 
 ### Cocoapods
 
-You can add HappinessMeterSDK to your project using [Cocoapods](https://cocoapods.org/).
+You can add CustomerPulse to your project using [Cocoapods](https://cocoapods.org/).
 
 *If Cocoapods is not added to your project, run `pod init` in the root directory of your Xcode project.*
 
@@ -30,7 +30,7 @@ import CustomerPulse
 
 ### Manually
 
-If you do not want to add HappinessMeterSDK using Cocoapods, you can add `CustomerPulse.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
+If you do not want to add CustomerPulse using Cocoapods, you can add `CustomerPulse.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
 <br /><br />
 
 To import the SDK to your project
