@@ -1,0 +1,19 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target x86_64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CustomerPulse
+import Foundation
+import Swift
+import SwiftUI
+import UIKit
+import WebKit
+import _Concurrency
+@_exported import CustomerPulse
+public protocol HappinessMeterDelegate : AnyObject {
+  func hmSDKUserCompletedSurvey()
+}
+public class HappinessMeterSDK {
+  weak public var delegate: CustomerPulse.HappinessMeterDelegate?
+  public init(_ token: Swift.String)
+  public func showSurvey(on vc: UIKit.UIViewController, isDismissible: Swift.Bool = true, dimissAfter dismissTimer: Swift.Int = 1000, withOptions options: [Swift.String : Any] = [:])
+  @objc deinit
+}

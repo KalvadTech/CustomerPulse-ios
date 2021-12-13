@@ -4,30 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CustomerPulseSample.xcscheme</key>
+		<key>CustomerPulse.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
-		<key>CustomerPulseSample.xcscheme_^#shared#^_</key>
+		<key>CustomerPulse.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>EBC5761A273BEB0200AC2528</key>
+		<key>EBC575F7273BEAD800AC2528</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBC57630273BEB0400AC2528</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EBC5763A273BEB0400AC2528</key>
+		<key>EBC57601273BEAD800AC2528</key>
 		<dict>
 			<key>primary</key>
 			<true/>

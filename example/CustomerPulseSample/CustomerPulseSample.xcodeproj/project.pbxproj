@@ -26,14 +26,14 @@
 			containerPortal = EBC57613273BEB0200AC2528 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EBC5761A273BEB0200AC2528;
-			remoteInfo = hm.sdk.sample;
+			remoteInfo = CustomerPulseSample;
 		};
 		EBC5763C273BEB0400AC2528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EBC57613273BEB0200AC2528 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EBC5761A273BEB0200AC2528;
-			remoteInfo = hm.sdk.sample;
+			remoteInfo = CustomerPulseSample;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -171,7 +171,7 @@
 			dependencies = (
 			);
 			name = CustomerPulseSample;
-			productName = hm.sdk.sample;
+			productName = CustomerPulse;
 			productReference = EBC5761B273BEB0200AC2528 /* CustomerPulseSample.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -189,7 +189,7 @@
 				EBC57633273BEB0400AC2528 /* PBXTargetDependency */,
 			);
 			name = CustomerPulseSampleTests;
-			productName = hm.sdk.sampleTests;
+			productName = CustomerPulseSampleTests;
 			productReference = EBC57631273BEB0400AC2528 /* CustomerPulseSampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -207,7 +207,7 @@
 				EBC5763D273BEB0400AC2528 /* PBXTargetDependency */,
 			);
 			name = CustomerPulseSampleUITests;
-			productName = hm.sdk.sampleUITests;
+			productName = CustomerPulseSampleUITests;
 			productReference = EBC5763B273BEB0400AC2528 /* CustomerPulseSampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -470,7 +470,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CustomerPulseSample/Info.plist;
+				INFOPLIST_FILE = CustomerPulse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -500,7 +500,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CustomerPulseSample/Info.plist;
+				INFOPLIST_FILE = CustomerPulse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -589,7 +589,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = hm.sdk.sample;
+				TEST_TARGET_NAME = CustomerPulseSample;
 			};
 			name = Debug;
 		};
@@ -612,7 +612,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = hm.sdk.sample;
+				TEST_TARGET_NAME = CustomerPulseSample;
 			};
 			name = Release;
 		};

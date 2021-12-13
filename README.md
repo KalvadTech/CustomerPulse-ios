@@ -30,13 +30,13 @@ import HappinessMeterSDK
 
 ### Manually
 
-If you do not want to add HappinessMeterSDK using Cocoapods, you can add `hm_ios_sdk.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
+If you do not want to add HappinessMeterSDK using Cocoapods, you can add `CustomerPulse.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
 <br /><br />
 
 To import the SDK to your project
 
 ```
-import hm_ios_sdk
+import CustomerPulse
 ```
 
 ## Usage
@@ -90,7 +90,7 @@ self.hmSDK.showSurvey(on: self, isDismissible: true, dimissAfter: 1000, withOpti
 ### Delegates
 
 To be notified on certain actions, you have to subscribe to delegates.
-(If you want more information, check the [example project](https://github.com/KalvadTech/hm-ios-sdk/blob/main/example/hm.sdk.sample/hm.sdk.sample/ViewController.swift))
+(If you want more information, check the [example project](https://github.com/KalvadTech/hm-ios-sdk/blob/main/example/CustomerPulseSample/CustomerPulseSample/ViewController.swift))
 
 
 ```
@@ -107,4 +107,4 @@ func hmSDKUserCompletedSurvey() -> void
 
 ## License
 
-HappinessMeterSDK is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/hm-ios-sdk/blob/main/sdk/hm.ios.sdk/LICENSE) for details.
+HappinessMeterSDK is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/hm-ios-sdk/blob/main/sdk/CustomerPulse/LICENSE) for details.
