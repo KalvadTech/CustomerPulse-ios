@@ -1,0 +1,11 @@
+framework module CustomerPulse {
+  umbrella header "CustomerPulse.h"
+
+  export *
+  module * { export * }
+}
+
+module CustomerPulse.Swift {
+    header "CustomerPulse-Swift.h"
+    requires objc
+}
