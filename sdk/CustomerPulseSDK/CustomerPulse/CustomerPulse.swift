@@ -14,12 +14,14 @@ public protocol CustomerPulseDelegate: AnyObject {
 }
 
 public class CustomerPulse {
+    let appId: String
     let token: String
     let baseURL: String = "https://survey.customerpulse.gov.ae"
     
     public weak var delegate: CustomerPulseDelegate?
     
-    public init(_ token: String) {
+    public init(_ appId: String, _ token: String) {
+        self.appId = appId
         self.token = token
     }
     
@@ -31,7 +33,7 @@ public class CustomerPulse {
     ///   - dismissTimer: The value in milliseconds after which the questionnaire will close automatically after having been successfully completed. Default value is 1000ms.
     ///   - options: Dictionary to specify optional parameters to load. (eg. lang='ar/en')
     public func showSurvey(on vc: UIViewController, isDismissible: Bool = true, dimissAfter dismissTimer: Int = 1000, withOptions options:[String: Any] = [:]) -> Void {
-        let webView = CSWebView.init(surveyURL: "\(baseURL)/\(token)", isDismissible: isDismissible, dismissTimer: dismissTimer, withOptions: options) {
+        let webView = CSWebView.init(surveyURL: "\(baseURL)/\(token)", appId: appId, isDismissible: isDismissible, dismissTimer: dismissTimer, withOptions: options) {
             guard let sdkDelegate = self.delegate else {
                 return
             }

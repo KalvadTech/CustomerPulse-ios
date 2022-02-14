@@ -6,8 +6,8 @@ Displays CustomerPulse surveys in Swift.
 CustomerPulse is a module written in Swift allowing developer to easily integrate CustomerPulse surveys in their applications.
 <br /><br />
 
-Latest version : 1.2.0<br />
-https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.2.0
+Latest version : 1.3.0<br />
+https://github.com/KalvadTech/hm-ios-sdk/releases/tag/1.3.0
 
 ## Installation
 
@@ -44,7 +44,7 @@ import CustomerPulse
 First, initialise the SDK using your token or link.
 
 ```
-let csSDK: CustomerPulse = CustomerPulse.init("TOKEN_OR_LINK")
+let csSDK: CustomerPulse = CustomerPulse.init("APP_ID", "TOKEN_OR_LINK")
 ```
 
 Finally, simply display the survey for your users.
@@ -90,7 +90,7 @@ self.csSDK.showSurvey(on: self, isDismissible: true, dimissAfter: 1000, withOpti
 ### Delegates
 
 To be notified on certain actions, you have to subscribe to delegates.
-(If you want more information, check the [example project](https://github.com/KalvadTech/CustomerPulse-ios/blob/main/example/CustomerPulseSample/CustomerPulseSample/ViewController.swift))
+(If you want more information, check the [example project](https://github.com/KalvadTech/CustomerPulse-ios/blob/main/example/CustomerPulseSample/CustomerPulse/ViewController.swift))
 
 
 ```

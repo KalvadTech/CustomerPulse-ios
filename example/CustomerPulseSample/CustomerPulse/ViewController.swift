@@ -12,7 +12,7 @@ class ViewController: UIViewController, CustomerPulseDelegate {
     
     @IBOutlet weak var showSurveyButton: UIButton!
     
-    let csSDK: CustomerPulse = CustomerPulse.init("LINK_OR_TOKEN_HERE")
+    let csSDK: CustomerPulse = CustomerPulse.init("APP_ID", "TOKEN_OR_LINK_HERE")
 
     override func viewDidLoad() {
         super.viewDidLoad()

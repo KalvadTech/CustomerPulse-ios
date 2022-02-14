@@ -11,9 +11,10 @@ import WebKit
 
 class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
     
-    convenience init(surveyURL: String, isDismissible: Bool, dismissTimer: Int, withOptions options: [String: Any], completedCallback: (() -> Void)? = nil) {
+    convenience init(surveyURL: String, appId: String, isDismissible: Bool, dismissTimer: Int, withOptions options: [String: Any], completedCallback: (() -> Void)? = nil) {
         self.init()
         self.surveyURL = surveyURL
+        self.appId = appId
         self.surveyOptions = options
         self.isDismissible = isDismissible
         self.dismissTimer = dismissTimer
@@ -31,6 +32,7 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
     }()
     
     var surveyURL: String?
+    var appId: String?
     var surveyOptions: [String: Any] = [:]
     var isDismissible: Bool = true
     var completedCallback: (() -> Void)? = nil
@@ -49,16 +51,21 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
         }
         
         var sURL = URLComponents(string: urlString)
+        if let appIdentifier = appId {
+            surveyOptions["app_id"] = appIdentifier
+        }
+        
         sURL?.queryItems = surveyOptions.map({ option in
+            print(URLQueryItem(name: option.key, value: option.value as? String))
             return URLQueryItem(name: option.key, value: option.value as? String)
         })
         
-        guard let test = sURL?.url else {
+        guard let queryURL = sURL?.url else {
             return
         }
 
         
-        let surveyRequest = URLRequest(url: test)
+        let surveyRequest = URLRequest(url: queryURL)
         webView.load(surveyRequest)
     }
     

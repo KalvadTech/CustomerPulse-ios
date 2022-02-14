@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   spec.name         = "CustomerPulse"
-  spec.version      = "1.2.0"
+  spec.version      = "1.3.0"
   spec.summary      = "Displays CustomerPulse surveys in Swift"
   spec.description  = "CustomerPulse is a module written in Swift allowing developer to easily integrate CustomerPulse surveys in their applications."
   spec.homepage     = "https://github.com/KalvadTech/CustomerPulse-ios.git"
