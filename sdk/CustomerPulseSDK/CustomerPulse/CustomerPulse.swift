@@ -16,7 +16,7 @@ public protocol CustomerPulseDelegate: AnyObject {
 public class CustomerPulse {
     let appId: String
     let token: String
-    let baseURL: String = "https://survey.customerpulse.gov.ae"
+    let baseURL: String = "https://sandboxsurvey.customerpulse.gov.ae"
     
     public weak var delegate: CustomerPulseDelegate?
     
