@@ -1,164 +1,286 @@
+<p align="center">
+  <h1 align="center">CustomerPulse iOS SDK</h1>
+  <p align="center">
+    Easily integrate CustomerPulse surveys into your iOS applications
+    <br />
+    <a href="docs/API.md"><strong>Explore the API docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/KalvadTech/CustomerPulse-ios/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/KalvadTech/CustomerPulse-ios/issues">Request Feature</a>
+  </p>
+</p>
 
-# CustomerPulse
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-iOS%2015.0+-blue.svg" alt="Platform iOS 15.0+" />
+  <img src="https://img.shields.io/badge/Swift-5.9+-orange.svg" alt="Swift 5.9+" />
+  <img src="https://img.shields.io/badge/CocoaPods-compatible-green.svg" alt="CocoaPods compatible" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License MIT" />
+  <img src="https://img.shields.io/badge/Version-2.0.0-brightgreen.svg" alt="Version 2.0.0" />
+</p>
 
-Displays CustomerPulse surveys in Swift.
+---
 
-CustomerPulse is a module written in Swift allowing developers to easily integrate CustomerPulse surveys in their applications.
+## Overview
 
-**Latest version:** 2.0.0
+CustomerPulse iOS SDK provides a simple and elegant way to display customer satisfaction surveys in your iOS applications. With just a few lines of code, you can gather valuable feedback from your users.
+
+### Features
+
+- 🚀 **Simple Integration** - Get started with just 3 lines of code
+- 🔒 **Secure** - All communications over HTTPS
+- 🌍 **Multi-language Support** - Built-in support for English and Arabic
+- 🎨 **Native Experience** - Surveys displayed in a native WKWebView
+- 🔧 **Configurable** - Environment switching, dismissal control, auto-close timing
+- 📊 **Debug Mode** - Built-in logging for development
+
+---
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [API Reference](#api-reference)
+- [Migration Guide](#migration-guide)
+- [Example Project](#example-project)
+- [Support](#support)
+- [License](#license)
+
+---
 
 ## Requirements
 
-- iOS 15.0+
-- Swift 5.9+
-- Xcode 15+
+| Requirement | Minimum Version |
+|-------------|-----------------|
+| iOS | 15.0+ |
+| Swift | 5.9+ |
+| Xcode | 15.0+ |
+
+---
 
 ## Installation
 
 ### CocoaPods
 
-You can add CustomerPulse to your project using [CocoaPods](https://cocoapods.org/).
+Add the following to your `Podfile`:
 
-*If CocoaPods is not added to your project, run `pod init` in the root directory of your Xcode project.*
+```ruby
+pod 'CustomerPulse', '~> 2.0'
+```
 
-Simply add `pod 'CustomerPulse'` to your Podfile.
-Then run `pod install` in your terminal.
+Then run:
 
-*If you are not familiar with CocoaPods, this will create a `[project].xcworkspace` that you will have to use from now on.*
+```bash
+pod install
+```
 
-To import the SDK to your project:
+### Swift Package Manager
+
+Add the following to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/KalvadTech/CustomerPulse-ios.git", from: "2.0.0")
+]
+```
+
+### Manual Installation
+
+1. Download the latest `CustomerPulse.xcframework` from the [Releases](https://github.com/KalvadTech/CustomerPulse-ios/releases) page
+2. Drag and drop it into your Xcode project
+3. Ensure it's added to "Frameworks, Libraries, and Embedded Content" with "Embed & Sign"
+
+---
+
+## Quick Start
+
+### 1. Import the SDK
 
 ```swift
 import CustomerPulse
 ```
 
-### Manually
-
-If you do not want to add CustomerPulse using CocoaPods, you can add `CustomerPulse.xcframework` to your project. You can find the framework in the `build` folder of the SDK.
-
-To import the SDK to your project:
+### 2. Initialize
 
 ```swift
-import CustomerPulse
+let pulse = CustomerPulse(appId: "YOUR_APP_ID", token: "YOUR_TOKEN")
 ```
 
-## Usage
-
-First, initialize the SDK using your app ID and token:
+### 3. Show Survey
 
 ```swift
-let csSDK = CustomerPulse(appId: "APP_ID", token: "TOKEN_OR_LINK")
+pulse.showSurvey(on: self)
 ```
 
-Then, display the survey for your users:
+That's it! 🎉
+
+---
+
+## Configuration
+
+### Environment
+
+Switch between production and sandbox environments:
 
 ```swift
-csSDK.showSurvey(on: self, isDismissible: true, dismissAfter: 1000, options: ["lang": "en"])
-```
-
-### Environment Configuration
-
-By default, the SDK uses the production environment. To use the sandbox environment for testing:
-
-```swift
-// Set before showing survey
-CustomerPulse.environment = .sandbox
-
-// Then show the survey as usual
-csSDK.showSurvey(on: self)
-```
-
-To switch back to production:
-
-```swift
+// Production (default)
 CustomerPulse.environment = .production
+
+// Sandbox (for testing)
+CustomerPulse.environment = .sandbox
 ```
 
 ### Debug Logging
 
-Enable debug logging to see SDK activity in the console:
+Enable console logging during development:
 
 ```swift
 CustomerPulse.debugLogging = true
 ```
 
-Output:
+**Output:**
 ```
-[CustomerPulse] SDK initialized with appId: APP_ID
+[CustomerPulse] SDK initialized with appId: YOUR_APP_ID
 [CustomerPulse] Environment: sandbox
-[CustomerPulse] Loading survey: https://sandboxsurvey.customerpulse.gov.ae/E
-[CustomerPulse] Options: ["lang": "en"]
+[CustomerPulse] Loading survey: https://sandboxsurvey.customerpulse.gov.ae/TOKEN
 [CustomerPulse] Survey completed
 ```
 
-### Parameters
+### Survey Options
 
-| Name | Type | Description | Default |
-|------|------|-------------|---------|
-| `on` | `UIViewController` | The view controller where the survey will be presented. | N/A |
-| `isDismissible` | `Bool` | Whether the survey can be dismissed by the user. | `true` |
-| `dismissAfter` | `Int` | Delay in milliseconds before auto-dismiss after completion. | `1000` |
-| `options` | `[String: Any]` | Dictionary of optional parameters (e.g., `["lang": "ar"]`). | `[:]` |
-
-### Delegates
-
-To be notified on certain actions, subscribe to the delegate:
+Customize survey behavior:
 
 ```swift
-class ViewController: UIViewController, CustomerPulseDelegate {
+pulse.showSurvey(
+    on: self,
+    isDismissible: true,      // Allow user to dismiss
+    dismissAfter: 2000,       // Auto-close after 2 seconds
+    options: ["lang": "ar"]   // Arabic language
+)
+```
 
-    let csSDK = CustomerPulse(appId: "APP_ID", token: "TOKEN")
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `on` | `UIViewController` | Presenting view controller | Required |
+| `isDismissible` | `Bool` | User can swipe to dismiss | `true` |
+| `dismissAfter` | `Int` | Auto-dismiss delay (ms) | `1000` |
+| `options` | `[String: Any]` | Additional parameters | `[:]` |
+
+### Delegate
+
+Handle survey completion events:
+
+```swift
+class MyViewController: UIViewController, CustomerPulseDelegate {
+
+    let pulse = CustomerPulse(appId: "APP_ID", token: "TOKEN")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        csSDK.delegate = self
+        pulse.delegate = self
     }
 
-    // Called when the user has successfully completed the survey
     func csUserCompletedSurvey() {
-        print("User completed the survey")
+        // User finished the survey
+        print("Thank you for your feedback!")
     }
 }
 ```
 
-## Migrating from v1.x to v2.0
+---
 
-### Breaking Changes
+## API Reference
+
+For complete API documentation, see [docs/API.md](docs/API.md).
+
+### Quick Reference
+
+```swift
+// Static Properties
+CustomerPulse.environment: Environment     // .production or .sandbox
+CustomerPulse.debugLogging: Bool           // Enable/disable logging
+
+// Instance Properties
+pulse.delegate: CustomerPulseDelegate?     // Completion callback delegate
+
+// Methods
+pulse.showSurvey(on:isDismissible:dismissAfter:options:)
+```
+
+---
+
+## Migration Guide
+
+### Upgrading from v1.x to v2.0
+
+#### Breaking Changes
 
 | v1.x | v2.0 |
 |------|------|
-| `CustomerPulse.init("appId", "token")` | `CustomerPulse(appId: "appId", token: "token")` |
+| `CustomerPulse("id", "token")` | `CustomerPulse(appId: "id", token: "token")` |
 | `dimissAfter:` | `dismissAfter:` |
 | `withOptions:` | `options:` |
 | `showSurveyWithBaseUrl(...)` | `CustomerPulse.environment = .sandbox` |
 | iOS 13.0+ | iOS 15.0+ |
 
-### Migration Example
+#### Before (v1.x)
 
-**Before (v1.x):**
 ```swift
-let csSDK = CustomerPulse.init("APP_ID", "TOKEN")
-csSDK.showSurvey(on: self, dimissAfter: 1000, withOptions: ["lang": "en"])
+let sdk = CustomerPulse.init("APP_ID", "TOKEN")
+sdk.showSurvey(on: self, dimissAfter: 1000, withOptions: ["lang": "en"])
 
-// For sandbox
-csSDK.showSurveyWithBaseUrl(on: self, baseURL: "https://sandboxsurvey.customerpulse.gov.ae", dimissAfter: 1000, withOptions: ["lang": "en"])
+// Sandbox
+sdk.showSurveyWithBaseUrl(on: self, baseURL: "https://sandbox...", dimissAfter: 1000)
 ```
 
-**After (v2.0):**
-```swift
-let csSDK = CustomerPulse(appId: "APP_ID", token: "TOKEN")
-csSDK.showSurvey(on: self, dismissAfter: 1000, options: ["lang": "en"])
+#### After (v2.0)
 
-// For sandbox
+```swift
+let sdk = CustomerPulse(appId: "APP_ID", token: "TOKEN")
+sdk.showSurvey(on: self, dismissAfter: 1000, options: ["lang": "en"])
+
+// Sandbox
 CustomerPulse.environment = .sandbox
-csSDK.showSurvey(on: self, dismissAfter: 1000, options: ["lang": "en"])
+sdk.showSurvey(on: self, dismissAfter: 1000)
 ```
 
-## Getting Help
+---
 
-- **Have a bug to report?** [Open a GitHub issue](https://github.com/KalvadTech/CustomerPulse-ios/issues). If possible, include the version of the build, a full log, and a project that shows the issue.
-- **Have a feature request?** [Open a GitHub issue](https://github.com/KalvadTech/CustomerPulse-ios/issues). Tell us what the feature should do and why you want the feature.
+## Example Project
+
+Check out the example project in the [`example/`](example/) directory for a complete implementation.
+
+```bash
+cd example/CustomerPulseSample
+open CustomerPulseSample.xcworkspace
+```
+
+---
+
+## Support
+
+- 📖 **Documentation**: [API Reference](docs/API.md)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/KalvadTech/CustomerPulse-ios/issues)
+- 💡 **Feature Requests**: [GitHub Issues](https://github.com/KalvadTech/CustomerPulse-ios/issues)
+- 📧 **Email**: support@kalvad.com
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
+
+---
 
 ## License
 
-CustomerPulse is released under the MIT license. [See LICENSE](https://github.com/KalvadTech/CustomerPulse-ios/blob/main/sdk/CustomerPulseSDK/LICENSE) for details.
+CustomerPulse iOS SDK is released under the MIT License. See [LICENSE](sdk/CustomerPulseSDK/LICENSE) for details.
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://kalvad.com">Kalvad Tech</a>
+</p>
