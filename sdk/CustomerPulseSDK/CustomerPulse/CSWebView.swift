@@ -56,8 +56,7 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
         }
         
         sURL?.queryItems = surveyOptions.map({ option in
-            print(URLQueryItem(name: option.key, value: option.value as? String))
-            return URLQueryItem(name: option.key, value: option.value as? String)
+            URLQueryItem(name: option.key, value: option.value as? String)
         })
         
         guard let queryURL = sURL?.url else {
