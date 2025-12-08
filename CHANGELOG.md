@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive API documentation comments
 
 ### Changed
+- **BREAKING:** CocoaPods package renamed from `CustomerPulse` to `CustomerPulseSDK`
 - **BREAKING:** Minimum iOS version raised from 13.0 to 15.0
 - **BREAKING:** Swift version raised from 5.0 to 5.9
 - **BREAKING:** Parameter `dimissAfter` renamed to `dismissAfter` (typo fix)
