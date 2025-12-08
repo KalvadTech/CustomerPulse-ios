@@ -72,7 +72,7 @@ Choose **one** of the following installation methods:
 Add the following to your `Podfile`:
 
 ```ruby
-pod 'CustomerPulse', '~> 2.0'
+pod 'CustomerPulseSDK', '~> 2.0'
 ```
 
 Then run:
