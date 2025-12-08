@@ -63,7 +63,11 @@ CustomerPulse iOS SDK provides a simple and elegant way to display customer sati
 
 ## Installation
 
-### CocoaPods
+Choose **one** of the following installation methods:
+
+---
+
+### Option 1: CocoaPods (Recommended)
 
 Add the following to your `Podfile`:
 
@@ -77,9 +81,17 @@ Then run:
 pod install
 ```
 
-### Swift Package Manager
+---
 
-Add the following to your `Package.swift`:
+### Option 2: Swift Package Manager
+
+In Xcode, go to **File → Add Package Dependencies** and enter:
+
+```
+https://github.com/KalvadTech/CustomerPulse-ios.git
+```
+
+Or add the following to your `Package.swift`:
 
 ```swift
 dependencies: [
@@ -87,11 +99,13 @@ dependencies: [
 ]
 ```
 
-### Manual Installation
+---
 
-1. Download the latest `CustomerPulse.xcframework` from the [Releases](https://github.com/KalvadTech/CustomerPulse-ios/releases) page
+### Option 3: Manual Installation
+
+1. Download `CustomerPulse.xcframework` from the [Releases](https://github.com/KalvadTech/CustomerPulse-ios/releases) page
 2. Drag and drop it into your Xcode project
-3. Ensure it's added to "Frameworks, Libraries, and Embedded Content" with "Embed & Sign"
+3. Ensure it's added to **"Frameworks, Libraries, and Embedded Content"** with **"Embed & Sign"**
 
 ---
 
