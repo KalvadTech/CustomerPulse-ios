@@ -230,10 +230,26 @@ pulse.showSurvey(on:isDismissible:dismissAfter:options:)
 
 ### Upgrading from v1.x to v2.0
 
+#### CocoaPods Name Change
+
+The CocoaPods package has been renamed from `CustomerPulse` to `CustomerPulseSDK`.
+
+**Update your Podfile:**
+```ruby
+# Old (v1.x)
+pod 'CustomerPulse'
+
+# New (v2.0)
+pod 'CustomerPulseSDK', '~> 2.0'
+```
+
+> **Note:** The Swift module name remains `CustomerPulse`, so your `import CustomerPulse` statements stay the same.
+
 #### Breaking Changes
 
 | v1.x | v2.0 |
 |------|------|
+| `pod 'CustomerPulse'` | `pod 'CustomerPulseSDK'` |
 | `CustomerPulse("id", "token")` | `CustomerPulse(appId: "id", token: "token")` |
 | `dimissAfter:` | `dismissAfter:` |
 | `withOptions:` | `options:` |
