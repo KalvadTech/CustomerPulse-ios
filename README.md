@@ -305,12 +305,6 @@ See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
 
 ---
 
-## License
-
-CustomerPulse iOS SDK is released under the MIT License. See [LICENSE](sdk/CustomerPulseSDK/LICENSE) for details.
-
----
-
 <p align="center">
   Made with ❤️ by <a href="https://kalvad.com">Kalvad Tech</a>
 </p>
