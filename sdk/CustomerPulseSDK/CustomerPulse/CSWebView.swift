@@ -11,7 +11,7 @@ import WebKit
 
 class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
     
-    convenience init(surveyURL: String, appId: String, isDismissible: Bool, dismissTimer: Int, withOptions options: [String: Any], completedCallback: (() -> Void)? = nil) {
+    convenience init(surveyURL: String, appId: String, isDismissible: Bool, dismissTimer: Int, options: [String: Any], completedCallback: (() -> Void)? = nil) {
         self.init()
         self.surveyURL = surveyURL
         self.appId = appId

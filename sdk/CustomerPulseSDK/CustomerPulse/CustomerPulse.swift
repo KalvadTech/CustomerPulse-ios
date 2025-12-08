@@ -8,53 +8,81 @@
 import Foundation
 import UIKit
 
+/// Delegate protocol for CustomerPulse survey events
 public protocol CustomerPulseDelegate: AnyObject {
-    /// Automatically called whenever the user has successfully completed the survey
+    /// Called when the user has successfully completed the survey
     func csUserCompletedSurvey()
 }
 
+/// CustomerPulse SDK for displaying surveys
 public class CustomerPulse {
-    let appId: String
-    let token: String
-    let baseURL: String = "https://survey.customerpulse.gov.ae"
-    
+
+    // MARK: - Environment Configuration
+
+    /// Environment configuration for CustomerPulse SDK
+    public enum Environment {
+        case production
+        case sandbox
+    }
+
+    /// Current environment. Set before calling showSurvey. Default: .production
+    public static var environment: Environment = .production
+
+    // MARK: - Private Properties
+
+    private let appId: String
+    private let token: String
+
+    private var baseURL: String {
+        switch Self.environment {
+        case .production:
+            return "https://survey.customerpulse.gov.ae"
+        case .sandbox:
+            return "https://sandboxsurvey.customerpulse.gov.ae"
+        }
+    }
+
+    // MARK: - Public Properties
+
+    /// Delegate for survey completion events
     public weak var delegate: CustomerPulseDelegate?
-    
-    public init(_ appId: String, _ token: String) {
+
+    // MARK: - Initialization
+
+    /// Initialize CustomerPulse SDK
+    /// - Parameters:
+    ///   - appId: Your application ID
+    ///   - token: Your survey token or link
+    public init(appId: String, token: String) {
         self.appId = appId
         self.token = token
     }
-    
+
+    // MARK: - Public Methods
+
     /// Displays the survey in a WKWebView.
     ///
     /// - Parameters:
-    ///   - vc: The view controller where the survey will pop up.
-    ///   - isDimissible: Defines whether the survey is dismissible by the user. Default is set at true.
-    ///   - dismissTimer: The value in milliseconds after which the questionnaire will close automatically after having been successfully completed. Default value is 1000ms.
-    ///   - options: Dictionary to specify optional parameters to load. (eg. lang='ar/en')
-    public func showSurvey(on vc: UIViewController, isDismissible: Bool = true, dimissAfter dismissTimer: Int = 1000, withOptions options:[String: Any] = [:]) -> Void {
-        let webView = CSWebView.init(surveyURL: "\(baseURL)/\(token)", appId: appId, isDismissible: isDismissible, dismissTimer: dismissTimer, withOptions: options) {
-            guard let sdkDelegate = self.delegate else {
-                return
-            }
-            
-            sdkDelegate.csUserCompletedSurvey()
+    ///   - viewController: The view controller where the survey will be presented.
+    ///   - isDismissible: Whether the survey can be dismissed by the user. Default: true.
+    ///   - dismissAfter: Delay in milliseconds before auto-dismiss after completion. Default: 1000ms.
+    ///   - options: Dictionary of optional parameters (e.g., ["lang": "ar"]).
+    public func showSurvey(
+        on viewController: UIViewController,
+        isDismissible: Bool = true,
+        dismissAfter: Int = 1000,
+        options: [String: Any] = [:]
+    ) {
+        let webView = CSWebView(
+            surveyURL: "\(baseURL)/\(token)",
+            appId: appId,
+            isDismissible: isDismissible,
+            dismissTimer: dismissAfter,
+            options: options
+        ) { [weak self] in
+            self?.delegate?.csUserCompletedSurvey()
         }
-        
-        vc.isModalInPresentation = true
-        vc.present(webView, animated: true, completion: nil)
-    } 
-    
-    public func showSurveyWithBaseUrl(on vc: UIViewController, isDismissible: Bool = true, baseURL: String = "https://sandboxsurvey.customerpulse.gov.ae", dimissAfter dismissTimer: Int = 1000, withOptions options:[String: Any] = [:]) -> Void {
-        let webView = CSWebView.init(surveyURL: "\(baseURL)/\(token)", appId: appId, isDismissible: isDismissible, dismissTimer: dismissTimer, withOptions: options) {
-            guard let sdkDelegate = self.delegate else {
-                return
-            }
-            
-            sdkDelegate.csUserCompletedSurvey()
-        }
-        
-        vc.isModalInPresentation = true
-        vc.present(webView, animated: true, completion: nil)
+
+        viewController.present(webView, animated: true)
     }
 }

@@ -12,7 +12,7 @@ class ViewController: UIViewController, CustomerPulseDelegate {
     
     @IBOutlet weak var showSurveyButton: UIButton!
     
-    let csSDK: CustomerPulse = CustomerPulse.init("APP_ID", "TOKEN_OR_LINK_HERE")
+    let csSDK = CustomerPulse(appId: "APP_ID", token: "TOKEN_OR_LINK_HERE")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ViewController: UIViewController, CustomerPulseDelegate {
     // MARK: - IBActions
 
     @IBAction func showSurveyPressed(_ sender: Any) {
-        self.csSDK.showSurvey(on: self, isDismissible: true, dimissAfter: 1000, withOptions: ["lang": "en"])
+        csSDK.showSurvey(on: self, isDismissible: true, dismissAfter: 1000, options: ["lang": "en"])
     }
     
     // MARK: - Customer Pulse Delegates
