@@ -295,7 +295,7 @@ open CustomerPulseSample.xcworkspace
 - 📖 **Documentation**: [API Reference](docs/API.md)
 - 🐛 **Bug Reports**: [GitHub Issues](https://github.com/KalvadTech/CustomerPulse-ios/issues)
 - 💡 **Feature Requests**: [GitHub Issues](https://github.com/KalvadTech/CustomerPulse-ios/issues)
-- 📧 **Email**: support@kalvad.com
+- 📧 **Email**: mohamed@kalvad.com
 
 ---
 
