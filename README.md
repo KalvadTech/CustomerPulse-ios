@@ -47,7 +47,6 @@ CustomerPulse iOS SDK provides a simple and elegant way to display customer sati
 - [Migration Guide](#migration-guide)
 - [Example Project](#example-project)
 - [Support](#support)
-- [License](#license)
 
 ---
 
