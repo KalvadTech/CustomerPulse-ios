@@ -74,6 +74,23 @@ To switch back to production:
 CustomerPulse.environment = .production
 ```
 
+### Debug Logging
+
+Enable debug logging to see SDK activity in the console:
+
+```swift
+CustomerPulse.debugLogging = true
+```
+
+Output:
+```
+[CustomerPulse] SDK initialized with appId: APP_ID
+[CustomerPulse] Environment: sandbox
+[CustomerPulse] Loading survey: https://sandboxsurvey.customerpulse.gov.ae/E
+[CustomerPulse] Options: ["lang": "en"]
+[CustomerPulse] Survey completed
+```
+
 ### Parameters
 
 | Name | Type | Description | Default |
