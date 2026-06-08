@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Swift-5.9+-orange.svg" alt="Swift 5.9+" />
   <img src="https://img.shields.io/badge/CocoaPods-compatible-green.svg" alt="CocoaPods compatible" />
   <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License MIT" />
-  <img src="https://img.shields.io/badge/Version-2.0.0-brightgreen.svg" alt="Version 2.0.0" />
+  <img src="https://img.shields.io/badge/Version-2.1.0-brightgreen.svg" alt="Version 2.1.0" />
 </p>
 
 ---
@@ -184,7 +184,10 @@ pulse.showSurvey(
 
 ### Delegate
 
-Handle survey completion events:
+Handle survey events by conforming to `CustomerPulseDelegate`. Only
+`csUserCompletedSurvey()` is required; `csUserSurveyError()` and
+`csUserDismissedSurvey()` are optional (they have default no-op implementations),
+so existing integrations keep working without changes.
 
 ```swift
 class MyViewController: UIViewController, CustomerPulseDelegate {
@@ -197,11 +200,27 @@ class MyViewController: UIViewController, CustomerPulseDelegate {
     }
 
     func csUserCompletedSurvey() {
-        // User finished the survey
+        // User finished the survey (fires after the auto-dismiss)
         print("Thank you for your feedback!")
+    }
+
+    func csUserSurveyError() {
+        // Survey reported an error
+        print("Survey error")
+    }
+
+    func csUserDismissedSurvey() {
+        // Survey was dismissed
+        print("Survey dismissed")
     }
 }
 ```
+
+| Event | Delegate method | Notes |
+|-------|-----------------|-------|
+| `so-widget-completed` | `csUserCompletedSurvey()` | Existing method; fires after the auto-dismiss |
+| `so-widget-error` | `csUserSurveyError()` | Optional; fires at event time, survey stays up |
+| `so-widget-closed` | `csUserDismissedSurvey()` | Optional; fires at event time |
 
 ---
 

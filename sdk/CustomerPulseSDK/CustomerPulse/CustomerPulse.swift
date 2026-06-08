@@ -8,10 +8,32 @@
 import Foundation
 import UIKit
 
-/// Delegate protocol for CustomerPulse survey events
+/// Delegate protocol for CustomerPulse survey events.
+///
+/// `csUserSurveyError()` and `csUserDismissedSurvey()` are optional: empty default
+/// implementations are provided by the protocol extension below, so existing
+/// conformers that only implement `csUserCompletedSurvey()` continue to compile
+/// unchanged.
 public protocol CustomerPulseDelegate: AnyObject {
     /// Called when the user has successfully completed the survey
+    /// (web event `so-widget-completed`).
     func csUserCompletedSurvey()
+
+    /// Called when the survey reports an error (web event `so-widget-error`).
+    ///
+    /// Fires at event-receipt time. The survey is not dismissed by the SDK in
+    /// response to this event. Optional — defaults to a no-op.
+    func csUserSurveyError()
+
+    /// Called when the survey is dismissed (web event `so-widget-closed`).
+    ///
+    /// Fires at event-receipt time. Optional — defaults to a no-op.
+    func csUserDismissedSurvey()
+}
+
+public extension CustomerPulseDelegate {
+    func csUserSurveyError() {}
+    func csUserDismissedSurvey() {}
 }
 
 /// CustomerPulse SDK for displaying surveys
@@ -48,7 +70,7 @@ public class CustomerPulse {
 
     // MARK: - Public Properties
 
-    /// Delegate for survey completion events
+    /// Delegate for survey events (completion, error, dismissal)
     public weak var delegate: CustomerPulseDelegate?
 
     // MARK: - Initialization
@@ -88,11 +110,20 @@ public class CustomerPulse {
             appId: appId,
             isDismissible: isDismissible,
             dismissTimer: dismissAfter,
-            options: options
-        ) { [weak self] in
-            Self.log("Survey completed")
-            self?.delegate?.csUserCompletedSurvey()
-        }
+            options: options,
+            completedCallback: { [weak self] in
+                Self.log("Survey completed")
+                self?.delegate?.csUserCompletedSurvey()
+            },
+            errorCallback: { [weak self] in
+                Self.log("Survey error")
+                self?.delegate?.csUserSurveyError()
+            },
+            dismissedCallback: { [weak self] in
+                Self.log("Survey dismissed")
+                self?.delegate?.csUserDismissedSurvey()
+            }
+        )
 
         viewController.present(webView, animated: true)
     }

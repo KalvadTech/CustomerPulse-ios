@@ -5,6 +5,23 @@ All notable changes to CustomerPulse iOS SDK will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-06-08
+
+### Added
+- `csUserSurveyError()` optional delegate method on `CustomerPulseDelegate`
+  (web event `so-widget-error`)
+- `csUserDismissedSurvey()` optional delegate method on `CustomerPulseDelegate`
+  (web event `so-widget-closed`)
+- Both new methods have empty default implementations via a protocol extension,
+  so they are optional — existing conformers compile unchanged
+- `CSWebView` now routes `so-widget-error` and `so-widget-closed` messages in
+  addition to `so-widget-completed`
+
+### Changed
+- Backward compatible: `csUserCompletedSurvey()` is unchanged in both name and
+  firing point (still fires after the post-completion dismiss). `showSurvey(...)`
+  signature is unchanged.
+
 ## [2.0.0] - 2025-12-08
 
 ### Added

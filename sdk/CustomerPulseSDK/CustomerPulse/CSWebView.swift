@@ -31,13 +31,17 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
     ///   - dismissTimer: Delay in milliseconds before auto-dismiss after completion.
     ///   - options: Additional query parameters to append to the URL.
     ///   - completedCallback: Closure called when the survey is completed.
+    ///   - errorCallback: Closure called when the survey reports an error.
+    ///   - dismissedCallback: Closure called when the survey is dismissed.
     convenience init(
         surveyURL: String,
         appId: String,
         isDismissible: Bool,
         dismissTimer: Int,
         options: [String: Any],
-        completedCallback: (() -> Void)? = nil
+        completedCallback: (() -> Void)? = nil,
+        errorCallback: (() -> Void)? = nil,
+        dismissedCallback: (() -> Void)? = nil
     ) {
         self.init()
         self.surveyURL = surveyURL
@@ -46,6 +50,8 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
         self.isDismissible = isDismissible
         self.dismissTimer = dismissTimer
         self.completedCallback = completedCallback
+        self.errorCallback = errorCallback
+        self.dismissedCallback = dismissedCallback
     }
 
     // MARK: - UI Components
@@ -76,11 +82,23 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
     /// Closure called when the survey is completed and dismissed.
     var completedCallback: (() -> Void)?
 
+    /// Closure called when the survey reports an error.
+    var errorCallback: (() -> Void)?
+
+    /// Closure called when the survey is dismissed.
+    var dismissedCallback: (() -> Void)?
+
     /// Delay in milliseconds before auto-dismiss after completion.
     var dismissTimer: Int = 1000
 
     /// JavaScript message name that indicates survey completion.
     private let jsCompletedMessage: String = "so-widget-completed"
+
+    /// JavaScript message name that indicates a survey error.
+    private let jsErrorMessage: String = "so-widget-error"
+
+    /// JavaScript message name that indicates the survey was dismissed.
+    private let jsClosedMessage: String = "so-widget-closed"
 
     /// The WKWebView instance displaying the survey.
     var webView: WKWebView!
@@ -171,12 +189,13 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
 
     /// Receives JavaScript messages from the web view.
     ///
-    /// The survey sends a "so-widget-completed" message when the user
-    /// successfully completes the survey.
+    /// The survey sends `so-widget-completed`, `so-widget-error`, or
+    /// `so-widget-closed` messages over the bridge. The body-matching logic is
+    /// delegated to `handle(_:)` so it can be unit-tested without a live `WKWebView`.
     ///
     /// - Parameters:
     ///   - userContentController: The content controller that delivered the message.
-    ///   - message: The script message containing the completion status.
+    ///   - message: The script message containing the survey event string.
     func userContentController(
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
@@ -185,8 +204,30 @@ class CSWebView: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptM
             return
         }
 
+        handle(jsMessage)
+    }
+
+    /// Routes a survey event string to the appropriate behavior and callback.
+    ///
+    /// Extracted from `userContentController(_:didReceive:)` so the routing logic is
+    /// testable without constructing a `WKScriptMessage` (which is not directly
+    /// instantiable).
+    ///
+    /// - `so-widget-completed`: dismiss after the configured delay, then fire
+    ///   `completedCallback` (unchanged from prior behavior — completion fires post-dismiss).
+    /// - `so-widget-error`: fire `errorCallback` at event time; the survey is not dismissed.
+    /// - `so-widget-closed`: fire `dismissedCallback` at event time; the survey is not dismissed
+    ///   by the SDK (the web widget closed itself).
+    /// - anything else: ignored.
+    ///
+    /// - Parameter jsMessage: The web widget event string received over the bridge.
+    func handle(_ jsMessage: String) {
         if jsMessage == jsCompletedMessage {
             userCompletedSurvey()
+        } else if jsMessage == jsErrorMessage {
+            errorCallback?()
+        } else if jsMessage == jsClosedMessage {
+            dismissedCallback?()
         }
     }
 }
