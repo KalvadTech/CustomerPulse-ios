@@ -1,6 +1,6 @@
 # CustomerPulse iOS SDK - API Reference
 
-Complete API documentation for CustomerPulse iOS SDK v2.0.0.
+Complete API documentation for CustomerPulse iOS SDK v2.1.0.
 
 ## Table of Contents
 
@@ -201,18 +201,56 @@ Protocol for receiving survey events.
 
 ```swift
 public protocol CustomerPulseDelegate: AnyObject {
+    /// Required. Fires after the survey completes (and auto-dismisses).
     func csUserCompletedSurvey()
+
+    /// Optional. Fires when the survey reports an error (survey stays up).
+    func csUserSurveyError()
+
+    /// Optional. Fires when the survey is dismissed/closed.
+    func csUserDismissedSurvey()
+}
+
+// Default no-op implementations make the error/dismiss methods optional,
+// so existing conformers that only implement csUserCompletedSurvey() keep working.
+public extension CustomerPulseDelegate {
+    func csUserSurveyError() {}
+    func csUserDismissedSurvey() {}
 }
 ```
+
+These map directly to the web widget's lifecycle events:
+
+| Event | Delegate method | Required? | Notes |
+|-------|-----------------|-----------|-------|
+| `so-widget-completed` | `csUserCompletedSurvey()` | Yes | Fires after the auto-dismiss |
+| `so-widget-error` | `csUserSurveyError()` | No (default no-op) | Fires at event time; survey stays up |
+| `so-widget-closed` | `csUserDismissedSurvey()` | No (default no-op) | Fires at event time |
 
 ### Methods
 
 #### csUserCompletedSurvey()
 
-Called when the user successfully completes the survey.
+Called when the user successfully completes the survey. Fires after the survey auto-dismisses.
 
 ```swift
 func csUserCompletedSurvey()
+```
+
+#### csUserSurveyError()
+
+Called when the survey reports an error. Optional — a default no-op implementation is provided, so you only implement it if you need it. The survey is not torn down on error.
+
+```swift
+func csUserSurveyError()
+```
+
+#### csUserDismissedSurvey()
+
+Called when the survey is dismissed/closed (the user closed it or the widget drove a close). Optional — a default no-op implementation is provided.
+
+```swift
+func csUserDismissedSurvey()
 ```
 
 **Example:**
@@ -222,6 +260,14 @@ class ViewController: UIViewController, CustomerPulseDelegate {
     func csUserCompletedSurvey() {
         print("Survey completed!")
         // Handle completion (e.g., show thank you message)
+    }
+
+    func csUserSurveyError() {
+        print("Survey error")
+    }
+
+    func csUserDismissedSurvey() {
+        print("Survey dismissed")
     }
 }
 ```

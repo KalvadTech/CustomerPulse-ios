@@ -71,7 +71,7 @@ Choose **one** of the following installation methods:
 Add the following to your `Podfile`:
 
 ```ruby
-pod 'CustomerPulseSDK', '~> 2.0'
+pod 'CustomerPulseSDK', '~> 2.1'
 ```
 
 Then run:
@@ -82,25 +82,7 @@ pod install
 
 ---
 
-### Option 2: Swift Package Manager
-
-In Xcode, go to **File → Add Package Dependencies** and enter:
-
-```
-https://github.com/KalvadTech/CustomerPulse-ios.git
-```
-
-Or add the following to your `Package.swift`:
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/KalvadTech/CustomerPulse-ios.git", from: "2.0.0")
-]
-```
-
----
-
-### Option 3: Manual Installation
+### Option 2: Manual Installation
 
 1. Download `CustomerPulse.xcframework` from the [Releases](https://github.com/KalvadTech/CustomerPulse-ios/releases) page
 2. Drag and drop it into your Xcode project
